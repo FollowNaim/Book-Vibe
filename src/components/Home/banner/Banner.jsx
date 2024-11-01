@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 function Banner() {
   return (
     <div className="container mx-auto px-4">
-      <div className="bg-muted flex gap-8 rounded-md justify-center items-center py-16">
+      <div className="bg-muted flex flex-col-reverse md:flex-row   gap-8 rounded-md justify-center items-center py-16">
         <div>
           <h1 className="playfair text-5xl leading-[70px] font-bold">
             Books to freshen up <br /> your bookshelf

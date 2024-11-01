@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { setDbData } from "@/utils/addToDb";
 import { useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 
@@ -11,6 +12,12 @@ function BookDetails() {
     const book = books.find((b) => b.bookId === parseInt(bookId));
     setBook(book);
   }, []);
+  const handleMarkAsRead = () => {
+    setDbData(bookId);
+  };
+  const handleWishList = () => {
+    setDbData(bookId, "wishlist");
+  };
   const {
     bookId: bId,
     bookName,
@@ -27,7 +34,7 @@ function BookDetails() {
   console.log(book);
   return (
     <div className="container mx-auto px-4 mt-10 mb-20">
-      <div className="grid grid-cols-2 gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         <div className="bg-muted p-12 rounded-xl flex flex-col justify-center items-center">
           <img className="w-72 mx-auto rounded-md" src={image} alt="" />
         </div>
@@ -60,7 +67,7 @@ function BookDetails() {
             </p>
           </div>
           <p className="border-t-2 border-dashed w-full my-6"></p>
-          <div className="flex flex-col gap-3 max-w-80">
+          <div className="flex flex-col gap-3 w-full md:max-w-80">
             <p className="flex justify-between items-center">
               <span>Number of Pages : </span>
               <span className="font-semibold"> {totalPages}</span>
@@ -79,8 +86,10 @@ function BookDetails() {
             </p>
           </div>
           <div className="mt-8 flex items-center gap-4">
-            <Button variant="outline">Mark as Read</Button>
-            <Button variant="" className="bg-green">
+            <Button variant="outline" onClick={handleMarkAsRead}>
+              Mark as Read
+            </Button>
+            <Button onClick={handleWishList} variant="" className="bg-black">
               Add to Wishlist
             </Button>
           </div>
