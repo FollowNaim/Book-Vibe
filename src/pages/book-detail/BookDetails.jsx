@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { setDbData } from "@/utils/addToDb";
+import { setDbData } from "@/utils/addToDB";
 import { useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 

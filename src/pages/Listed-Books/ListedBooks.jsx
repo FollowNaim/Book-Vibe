@@ -1,9 +1,8 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { getDbData } from "@/utils/addToDb";
+import { getDbData } from "@/utils/addToDB.js";
 import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
-import ReadWishList from "./ReadWishList";
-import Dropdown from "./dropdown/Dropdown";
+import ReadWishList from "../../components/Read-Wishlisht/ReadWishList";
 
 function ListedBooks() {
   const [readBooks, setReadBooks] = useState([]);

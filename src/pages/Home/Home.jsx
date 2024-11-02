@@ -1,5 +1,5 @@
-import Banner from "./banner/Banner";
-import Books from "./books/Books";
+import Banner from "@/components/banner/Banner";
+import Books from "@/components/books/Books";
 
 function Home() {
   return (
