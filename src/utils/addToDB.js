@@ -1,6 +1,5 @@
 export const getDbData = (key) => {
   const store = localStorage.getItem(key);
-  console.log(store);
   if (!store) {
     return [];
   } else {
