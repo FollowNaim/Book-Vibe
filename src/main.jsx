@@ -1,12 +1,18 @@
-import { StrictMode } from "react";
+import React, { StrictMode, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import BookDetails from "./components/Home/bookDetail/BookDetails";
-import Home from "./components/Home/Home";
-import ListedBooks from "./components/Listed-Books/ListedBooks";
-import Chart from "./components/PagesToRead/Chart";
+import Spinner from "./components/loading/Spinner";
 import "./index.css";
-import Layout from "./layout/layout.jsx";
+
+const Home = React.lazy(() => import("./pages/Home/Home"));
+const Layout = React.lazy(() => import("./layouts/layout.jsx"));
+const Chart = React.lazy(() => import("./pages/PagesToRead/Chart"));
+const ListedBooks = React.lazy(() =>
+  import("./pages/Listed-Books/ListedBooks")
+);
+const BookDetails = React.lazy(() =>
+  import("./pages/Home/bookDetail/BookDetails")
+);
 
 const router = createBrowserRouter([
   {
@@ -38,6 +44,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Suspense fallback={<Spinner />}>
+      <RouterProvider router={router} />
+    </Suspense>
   </StrictMode>
 );

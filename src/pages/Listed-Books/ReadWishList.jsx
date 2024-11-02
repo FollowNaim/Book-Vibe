@@ -1,7 +1,7 @@
 import { CiLocationOn } from "react-icons/ci";
 import { IoBookSharp, IoPeople } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 function ReadWishList({ book }) {
   const {
     bookId: bId,

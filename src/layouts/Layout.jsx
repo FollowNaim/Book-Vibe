@@ -1,5 +1,5 @@
-import Footer from "@/components/Home/navigation/Footer";
-import Nav from "@/components/Home/navigation/Nav";
+import Footer from "@/pages/Home/navigation/Footer";
+import Nav from "@/pages/Home/navigation/Nav";
 import { Outlet } from "react-router-dom";
 function Layout() {
   return (
