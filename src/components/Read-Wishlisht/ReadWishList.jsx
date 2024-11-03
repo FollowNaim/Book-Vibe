@@ -1,7 +1,8 @@
+import { Button } from "@/components/ui/button";
+import { BiCategory } from "react-icons/bi";
 import { CiLocationOn } from "react-icons/ci";
 import { IoBookSharp, IoPeople } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 function ReadWishList({ book }) {
   const {
     bookId: bId,
@@ -17,7 +18,7 @@ function ReadWishList({ book }) {
     yearOfPublishing,
   } = book;
   return (
-    <div className="flex items-center flex-col md:flex-row gap-6 w-full border p-6 border-border rounded-xl">
+    <div className="flex items-center flex-col md:flex-row gap-6 w-full border p-6 border-border rounded-xl overflow-x-hidden">
       <div className="bg-muted w-full md:w-fit py-7 px-12 rounded-lg">
         <img className="w-32 h-44 rounded-md mx-auto" src={image} alt="" />
       </div>
@@ -47,20 +48,24 @@ function ReadWishList({ book }) {
               {yearOfPublishing}
             </p>
           </div>
-          <div className="flex items-center my-4">
+          <div className="flex flex-col md:flex-row items-start md:items-center my-4">
             <p className="flex items-center">
               <IoPeople /> <span className="ml-2 mr-2">Publisher : </span>
               {publisher}
             </p>
-            <p className="flex items-center ml-4">
+            <p className="flex items-center ml:2 mt-4 md:mt-0 md:ml-4">
               <IoBookSharp /> <span className="ml-2 mr-2">Pages : </span>
               {totalPages}
             </p>
           </div>
           <p className="border-t-2 border-dashed w-full mb-4"></p>
-          <div className="flex items-center gap-4">
-            <p className="bg-blue-100 px-3 py-1  rounded-2xl">
-              <span className="font-medium">Category : </span> {category}
+          <div className="flex flex-row items-center gap-4">
+            <p className="bg-blue-100 px-3 py-1 flex gap-2 items-center rounded-2xl">
+              <span className="font-medium hidden xs:inline">Category : </span>{" "}
+              <span className="font-medium flex items-center gap-2   xs:hidden">
+                <BiCategory /> :
+              </span>
+              {category}
             </p>
             <p className="bg-red-100 px-3 py-1 hidden md:block rounded-2xl">
               <span className="font-medium">Rating : </span> {rating}

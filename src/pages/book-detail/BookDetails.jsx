@@ -1,9 +1,13 @@
+import Spinner from "@/components/loading/Spinner";
 import { Button } from "@/components/ui/button";
 import { setDbData } from "@/utils/addToDB";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { useLoaderData, useParams } from "react-router-dom";
 
 function BookDetails() {
+  const [isBtn1Loading, setIsBtn1Loading] = useState(false);
+  const [isBtn2Loading, setIsBtn2Loading] = useState(false);
   const books = useLoaderData();
   const { bookId } = useParams();
   const [book, setBook] = useState({});
@@ -12,11 +16,31 @@ function BookDetails() {
     const book = books.find((b) => b.bookId === parseInt(bookId));
     setBook(book);
   }, []);
-  const handleMarkAsRead = () => {
-    setDbData(bookId);
+  const handleMarkAsRead = async () => {
+    console.log("from mark as read");
+    setIsBtn1Loading(true);
+    try {
+      await setDbData(bookId);
+      toast.success("successfully added!");
+      setIsBtn1Loading(false);
+    } catch (err) {
+      toast.error("already added!");
+      console.log(err);
+      setIsBtn1Loading(false);
+    }
   };
-  const handleWishList = () => {
-    setDbData(bookId, "wishlist");
+  const handleWishList = async () => {
+    console.log("from wishlist");
+    setIsBtn2Loading(true);
+    try {
+      await setDbData(bookId, "wishlist");
+      toast.success("successfully added!");
+      setIsBtn2Loading(false);
+    } catch (err) {
+      toast.error("already added!");
+      console.log(err);
+      setIsBtn2Loading(false);
+    }
   };
   const {
     bookId: bId,
@@ -86,11 +110,11 @@ function BookDetails() {
             </p>
           </div>
           <div className="mt-8 flex items-center gap-4">
-            <Button variant="outline" onClick={handleMarkAsRead}>
-              Mark as Read
+            <Button onClick={handleMarkAsRead} variant="outline" className="">
+              {isBtn1Loading && <Spinner />} Mark as Read
             </Button>
             <Button onClick={handleWishList} variant="" className="bg-black">
-              Add to Wishlist
+              {isBtn2Loading && <Spinner />} Add to Wishlist
             </Button>
           </div>
         </div>
